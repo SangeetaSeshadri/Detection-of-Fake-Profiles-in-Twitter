@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Fake Profile Detection</title>
+    <style>
+		body {
+    
+			background: linear-gradient(135deg, #FF5F6D, #FFC371, #FFED5D, #48C6EF, #6A89CC, #F9A26C, #66CCCC, #CC99CC, #339966, #FF6666);
+			background-size: 200% 200%;
+			margin: 0;
+			padding: 0;
+			color: #fff;
+		}
+
+		.container {
+			width: 55%;
+			margin: auto;
+			margin-top: 2px;
+			padding: 10px;
+			background:#D4ADFC;
+			border-radius: 12px;
+			box-shadow: 0 0 30px #045e0e;
+		}
+
+		h1 {
+			margin: 0;
+			text-align: center;
+			color: #045e0e;
+			font-size: 32px;
+			margin-bottom:4px;
+			text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2);
+		}
+
+
+		label {
+			display: block;
+			font-weight: bold;
+			margin: 0px;
+			color:black;
+			
+			font-size: 17px;
+			margin-left:5px
+		}
+
+		input {
+			width: calc(100% - 20px);
+			border-radius: 5px;
+			box-sizing: border-box;
+			background-color: rgba(255, 255, 255, 0.9);
+			padding: 6px;
+			font-size: 16px;
+			color:black;
+			margin-left:5px;
+			margin-bottom:4px;
+			
+		}
+
+		input:focus {
+			outline: none;
+			border-color: #4A90E2;
+			box-shadow: 0 0 5px rgba(74, 144, 226, 0.5);
+		}
+
+		input[type="submit"] {
+			width: calc(100% - 20px);
+			padding: 8px;
+			background-color:#045e0e;
+			color: #fff;
+			border: none;
+			border-radius: 5px;
+			cursor: pointer;
+			transition: background 0.3s;
+			text-transform: uppercase;
+			font-weight: bold;
+			letter-spacing: 1px;
+			margin-top: 3px;
+		}
+
+		input[type="submit"]:hover {
+			background: linear-gradient(135deg, #FFA26C, #339966, #6A89CC);
+		}
+
+ </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Fake Profile Detection In Twitter</h1>
+        <form action="/predict" method="post">
+            <label for="statuses_count">Statuses Count:</label>
+            <input type="number" id="statuses_count" name="statuses_count">
+            
+            <label for="followers_count">Followers Count:</label>
+            <input type="number" id="followers_count" name="followers_count">
+            
+            <label for="friends_count">Friends Count:</label>
+            <input type="number" id="friends_count" name="friends_count">
+            
+            <label for="favourites_count">Favourites Count:</label>
+            <input type="number" id="favourites_count" name="favourites_count">
+            
+            <label for="listed_count">Listed Count:</label>
+            <input type="number" id="listed_count" name="listed_count">
+            
+            <label for="created_at">Created At:</label>
+            <input type="text" id="created_at" name="created_at">
+            
+            <label for="lang">Language:</label>
+            <input type="text" id="lang" name="lang">
+            
+            
+            
+            <input type="submit" value="Detect">
+        </form>
+ 

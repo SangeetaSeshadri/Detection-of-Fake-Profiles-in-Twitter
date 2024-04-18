@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Fake Profile Detection Result</title>
+    <style>
+      
+        .stats-button {
+            display: block;
+            text-align: center;
+            margin: 10px auto;
+            padding: 10px 20px;
+            background-color: yellow;
+            color: #000;
+            border: none;
+            font-size: 20px;
+            cursor: pointer;
+			border-radius:15px;
+			box-shadow: 0 2px 30px black;
+        }
+        .stats-button:hover {
+            background-color: #5D0E41;
+			color: #fff;
+			
+        }
+		#stats
+		{
+			color:red;
+		}
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 30px;
+        }
+        th, td {
+            padding: 10px;
+            text-align: left;
+            border-bottom: 1px solid #ddd;
+        }
+        th {
+            background-color: #045e0e;
+            color: #fff;
+        }
+        .confusion-matrix {
+            width: 80%;
+            margin: 30px auto;
+            display: block;
+        }
+		body {
+            background: linear-gradient(135deg, #FF5F6D, #FFC371, #FFED5D, #48C6EF, #6A89CC, #F9A26C, #66CCCC, #CC99CC, #339966, #FF6666);
+			background-size: 200% 200%;
+			margin: 0;
+			padding: 0;
+			color: #fff;
+        }
+        .container {
+            max-width: 650px;
+            margin: 50px auto;
+            background-color: #D4ADFC;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 2px 70px black;
+			
+        }
+        h1,h3 {
+			text-align: center;
+			color:#045e0e; 
+			text-shadow:0 2px 20px white;
+			
+        }
+		p{color:black;
+			
+		text-shadow:0 0px 2px yellow;	
+		font-size:24px}
+        aside {
+            font-size: 28px;
+            line-height: 1.5;
+			color:#5D0E41;
+			float:right;
+			margin-left:0px;
+			margin-top:20px;
+			width:450px;
+			
+           
+        }
+        a {
+            display: block;
+            text-align: center;
+            margin-top: 20px;
+            text-decoration: none;
+            color: black;
+			font-size:20px;
+			background: linear-gradient(135deg, #FFA26C, #339966, #6A89CC);
+        }
+		
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Result</h1>
+        {% if result == 0 %}
+        <aside>This profile is likely to be genuine.</aside>
+        <img src="{{ url_for('static', filename='gen.png') }}" alt="Genuine profile" width="150px" height="150px" class="profile">
+        {% else %}
+        <aside>This profile is likely to be fake.</aside>
+        <img src="{{ url_for('static', filename='fake1.png') }}" alt="Fake profile" width="150px" height="150px" class="profile">
+		
+        {% endif %}
+		<br/>
+        
+        <button class="stats-button" onclick="toggleStats()">Show Stats</button>
+        
+        <div id="stats" style="display:none;background-color:#FFF8E3;">
+			<p>These are few evaluation metrics for assessing the performance of GaradientBoostingClassifier in detecting fake profiles </p>
+           
+            <table>
+                <tr>
+                    <th>Metric</th>
+                    <th>Value</th>
+                </tr>
+                <tr>
+                    <td>Accuracy</td>
+                    <td>{{ accuracy }}</td>
+                </tr>
+                <tr>
+                    <td>Precision</td>
+                    <td>{{ precision }}</td>
+                </tr>
+                <tr>
+                    <td>Recall</td>
+                    <td>{{ recall }}</td>
+                </tr>
+                <tr>
+                    <td>F1 Score</td>
+                    <td>{{ f1 }}</td>
+                </tr>
+				
+            </table>
+			<h3>Confusion Matrix</h3>
+			<img src="{{ url_for('static', filename='confusion_matrixc.png') }}" alt="Confusion Matrix" class="confusion-matrix">
+        </div>
+
+        
+        
+        <a href="/">Go Back</a>
+    </div>
+
+    <script>
+        function toggleStats() {
+            const statsDiv = document.getElementById('stats');
+            if (statsDiv.style.display === 'none') {
+                statsDiv.style.display = 'block';
+            } else {
+                statsDiv.style.display = 'none';
+            }
+        }
+    </script>
+</body>
+</html>
